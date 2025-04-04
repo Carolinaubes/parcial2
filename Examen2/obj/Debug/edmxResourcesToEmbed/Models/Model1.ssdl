@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBExamenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="Documento" />
+    </Key>
+    <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Documento" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="80" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Celular" Type="varchar" MaxLength="12" />
+  </EntityType>
+  <EntityType Name="FotoPrenda">
+    <Key>
+      <PropertyRef Name="idFoto" />
+    </Key>
+    <Property Name="idFoto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FotoPrenda" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="idPrenda" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Prenda">
+    <Key>
+      <PropertyRef Name="IdPrenda" />
+    </Key>
+    <Property Name="IdPrenda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TipoPrenda" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="90" Nullable="false" />
+    <Property Name="Valor" Type="real" Nullable="false" />
+    <Property Name="Cliente" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK_FotoPrenda_Prenda">
+    <End Role="Prenda" Type="Self.Prenda" Multiplicity="1" />
+    <End Role="FotoPrenda" Type="Self.FotoPrenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prenda">
+        <PropertyRef Name="IdPrenda" />
+      </Principal>
+      <Dependent Role="FotoPrenda">
+        <PropertyRef Name="idPrenda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prenda_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+    <End Role="Prenda" Type="Self.Prenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Documento" />
+      </Principal>
+      <Dependent Role="Prenda">
+        <PropertyRef Name="Cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBExamenModelStoreContainer">
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FotoPrenda" EntityType="Self.FotoPrenda" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prenda" EntityType="Self.Prenda" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_FotoPrenda_Prenda" Association="Self.FK_FotoPrenda_Prenda">
+      <End Role="Prenda" EntitySet="Prenda" />
+      <End Role="FotoPrenda" EntitySet="FotoPrenda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prenda_Cliente" Association="Self.FK_Prenda_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Prenda" EntitySet="Prenda" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

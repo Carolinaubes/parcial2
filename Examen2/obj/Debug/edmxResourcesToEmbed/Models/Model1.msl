@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBExamenModelStoreContainer" CdmEntityContainer="DBExamenEntities1">
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="DBExamenModel.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+          <ScalarProperty Name="Documento" ColumnName="Documento" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FotoPrendas">
+      <EntityTypeMapping TypeName="DBExamenModel.FotoPrenda">
+        <MappingFragment StoreEntitySet="FotoPrenda">
+          <ScalarProperty Name="idFoto" ColumnName="idFoto" />
+          <ScalarProperty Name="FotoPrenda1" ColumnName="FotoPrenda" />
+          <ScalarProperty Name="idPrenda" ColumnName="idPrenda" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prendas">
+      <EntityTypeMapping TypeName="DBExamenModel.Prenda">
+        <MappingFragment StoreEntitySet="Prenda">
+          <ScalarProperty Name="IdPrenda" ColumnName="IdPrenda" />
+          <ScalarProperty Name="TipoPrenda" ColumnName="TipoPrenda" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
