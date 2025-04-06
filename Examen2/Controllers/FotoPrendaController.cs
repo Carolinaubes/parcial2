@@ -16,7 +16,7 @@ namespace Examen2.Controllers
 
         [HttpPut]
         [Route("InsertarPrendaCliente")]
-        public int InsertarPrendaCliente(int idCliente, string documento, string nombre, string email, string celular, string tipoPrenda, string descripcion, float valor)
+        public string InsertarPrendaCliente(int idCliente, string documento, string nombre, string email, string celular, string tipoPrenda, string descripcion, float valor)
         {
             clsPrenda Prenda = new clsPrenda();
 
@@ -24,7 +24,7 @@ namespace Examen2.Controllers
         }
 
         [HttpGet]
-        [Route("ListarPrendasXCliente/{documentoCliente}")]
+        [Route("ListarPrendasXCliente")]
         public IQueryable ListarPrendasXCliente(string documentoCliente)
         {
             clsPrenda prenda = new clsPrenda();
@@ -32,7 +32,7 @@ namespace Examen2.Controllers
         }
 
         [HttpPost]
-        [Route("CargarImagenPrenda/{idPrenda}")]
+        [Route("CargarImagenPrenda")]
         public async Task<HttpResponseMessage> CargarImagenPrenda(HttpRequestMessage request, int idPrenda)
         {
             clsUpload upload = new clsUpload();
@@ -43,7 +43,7 @@ namespace Examen2.Controllers
         }
 
         [HttpPut]
-        [Route("ActualizarImagenPrenda/{idPrenda}")] 
+        [Route("ActualizarImagenPrenda")] 
         public async Task<HttpResponseMessage> ActualizarImagenPrenda (HttpRequestMessage request, int idPrenda){ 
             clsUpload upload = new clsUpload();
             upload.request = request;
@@ -54,7 +54,7 @@ namespace Examen2.Controllers
         }
 
         [HttpDelete]
-        [Route("EliminarImagen/{*nombreArchivo}")]
+        [Route("EliminarImagen")]
         public string EliminarImagen(string nombreArchivo)
         {
             clsPrenda prenda = new clsPrenda();

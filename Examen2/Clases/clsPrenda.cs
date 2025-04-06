@@ -20,7 +20,7 @@ namespace Examen2.Clases
         private clsCliente cliente = new clsCliente();
 
         //El insertar va a grabar la prenda y el cliente
-        public int InsertarPrendaCliente(int idCliente, string documento, string nombre, string email, string celular, string tipoPrenda, string descripcion, float valor)
+        public string InsertarPrendaCliente(int idCliente, string documento, string nombre, string email, string celular, string tipoPrenda, string descripcion, float valor)
         {
             try
             {
@@ -48,21 +48,20 @@ namespace Examen2.Clases
                     {
                         throw new Exception("Error al insertar el cliente");
                     }
-
-                    Prenda objPrenda = new Prenda
-                    {
-                        TipoPrenda = tipoPrenda,
-                        Descripcion = descripcion,
-                        Valor = valor,
-                        Cliente = objCliente.Documento
-                    };
-
-                    dbexamen.Prendas.Add(objPrenda);
-                    dbexamen.SaveChanges(); // Confirmar y guardar los cambios en la base de datos
-
-                    return objPrenda.IdPrenda; // retornar el id de la prenda recien insertada
                 }
-                throw new Exception("Mensaje para validr");
+
+                Prenda objPrenda = new Prenda
+                {
+                    TipoPrenda = tipoPrenda,
+                    Descripcion = descripcion,
+                    Valor = valor,
+                    Cliente = objCliente.Documento
+                };
+
+                dbexamen.Prendas.Add(objPrenda);
+                dbexamen.SaveChanges(); // Confirmar y guardar los cambios en la base de datos
+
+                return "Se guardó con exito la prenda con id " + objPrenda.IdPrenda; // retornar el id de la prenda recien insertada
 
             } catch (Exception ex)
             {
